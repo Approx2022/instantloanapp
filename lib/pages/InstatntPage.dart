@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:instantloanapp/pages/BackDetailsPage.dart';
 import 'package:instantloanapp/pages/CurrentAdd.dart';
+import 'package:instantloanapp/pages/FinalOfferPage.dart';
 import 'package:instantloanapp/pages/KYC/AdharFrontPage.dart';
+import 'package:instantloanapp/pages/SalaryDetailsPage.dart';
+import 'package:instantloanapp/pages/UploadSalarySlipPage.dart';
 import 'package:instantloanapp/pages/UploadSelfiePage.dart';
 import 'package:sizer/sizer.dart';
 
@@ -36,18 +40,42 @@ class _InstatntPageState extends State<InstatntPage> {
                     builder: (context) => AdharFrontPage(),
                   ));
             }),
-            getTile("Current Address", "Enter the address where your currently living.", () {
+            getTile("Current Address",
+                "Enter the address where your currently living.", () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => CurrentAdd(),
                   ));
             }),
-            getTile("Give Salary Details", "Provide your monthly salary amount abd salary date.", () {
+            getTile("Give Salary Details",
+                "Provide your monthly salary amount abd salary date.", () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CurrentAdd(),
+                    builder: (context) => SalaryDetailsPage(),
+                  ));
+            }),
+            getTile("Give Bank Details", "Provide your bank information.", () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BankDetailsPage(),
+                  ));
+            }),
+            getTile("Upload Salary Slip", "To confirm your salary.", () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UploadSalarySlipPage(),
+                  ));
+            }),
+            getTile("Accept Final Offer",
+                "Confirm our offer,case amount and agreement", () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FinalOfferPage(),
                   ));
             }),
             //getTile("Upload Selfie", "Upload Selfie"),
