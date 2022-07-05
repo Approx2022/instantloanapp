@@ -2,19 +2,19 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:instantloanapp/pages/AdharBackPage.dart';
 import 'package:instantloanapp/pages/ImageCroperPage.dart';
+import 'package:instantloanapp/pages/KYCDataPage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sizer/sizer.dart';
 
-class AdharFrontPage extends StatefulWidget {
-  const AdharFrontPage({Key? key}) : super(key: key);
+class AdharBackPage extends StatefulWidget {
+  const AdharBackPage({Key? key}) : super(key: key);
 
   @override
-  State<AdharFrontPage> createState() => _AdharFrontPageState();
+  State<AdharBackPage> createState() => _AdharBackPageState();
 }
 
-class _AdharFrontPageState extends State<AdharFrontPage> {
+class _AdharBackPageState extends State<AdharBackPage> {
   late File? imageFile = null;
   ImagePicker _picker = ImagePicker();
   Directory? documentDirectory;
@@ -27,7 +27,7 @@ class _AdharFrontPageState extends State<AdharFrontPage> {
   iniImage() async {
     documentDirectory = await getApplicationDocumentsDirectory();
     if (documentDirectory != null)
-      imageFile = File("${documentDirectory!.path}/adhaar1.png");
+      imageFile = File("${documentDirectory!.path}/adhaar2.png");
     setState(() {});
   }
 
@@ -52,7 +52,7 @@ class _AdharFrontPageState extends State<AdharFrontPage> {
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              ImageCroperPage(0, imageFile!)));
+                              ImageCroperPage(1, imageFile!)));
                   if (result != null && result is File) {
                     imageFile = result as File;
                   }
@@ -78,7 +78,7 @@ class _AdharFrontPageState extends State<AdharFrontPage> {
                             color: Colors.grey.shade700,
                           ),
                           Text(
-                            "Click On Upload Aadhaar Card Front",
+                            "Click On Upload Aadhaar Card Back",
                             style: TextStyle(color: Colors.grey.shade500),
                           ),
                         ],
@@ -91,7 +91,7 @@ class _AdharFrontPageState extends State<AdharFrontPage> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) => AdharBackPage(),
+                        builder: (BuildContext context) => KYCDataPage(),
                       ),
                     );
                   }

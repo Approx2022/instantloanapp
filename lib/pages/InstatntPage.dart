@@ -26,7 +26,7 @@ class _InstatntPageState extends State<InstatntPage> {
                     builder: (context) => UploadSelfiePage(),
                   ));
             }),
-            getTile("Upload Selfie", "Upload Selfie", () {
+            getTile("Upload KYC Documents", "Upload Selfie", () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
