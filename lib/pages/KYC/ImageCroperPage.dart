@@ -8,8 +8,9 @@ import 'package:sizer/sizer.dart';
 class ImageCroperPage extends StatefulWidget {
   File file;
   int i;
+  String name;
 
-  ImageCroperPage(this.i, this.file);
+  ImageCroperPage(this.i, this.file, this.name);
 
   @override
   State<ImageCroperPage> createState() => _ImageCroperPageState();
@@ -51,9 +52,9 @@ class _ImageCroperPageState extends State<ImageCroperPage> {
                 sample.delete();
                 Directory documentDirectory =
                     await getApplicationDocumentsDirectory();
-                imageCache.clear();
+                imageCache!.clear();
                 final File newImage = await file.copy(
-                    '${documentDirectory.path}/${widget.i == 0 ? "adhaar1.png" : "adhaar2.png"}');
+                    '${documentDirectory.path}${widget.name}');
 
                 Navigator.pop(context);
                 Navigator.pop(context, newImage);

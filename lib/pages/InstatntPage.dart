@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:instantloanapp/pages/AdharFrontPage.dart';
+import 'package:instantloanapp/pages/CurrentAdd.dart';
+import 'package:instantloanapp/pages/KYC/AdharFrontPage.dart';
 import 'package:instantloanapp/pages/UploadSelfiePage.dart';
 import 'package:sizer/sizer.dart';
 
@@ -18,6 +19,8 @@ class _InstatntPageState extends State<InstatntPage> {
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             getTile("Upload Selfie", "Upload Selfie", () {
               Navigator.push(
@@ -31,6 +34,20 @@ class _InstatntPageState extends State<InstatntPage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => AdharFrontPage(),
+                  ));
+            }),
+            getTile("Current Address", "Enter the address where your currently living.", () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CurrentAdd(),
+                  ));
+            }),
+            getTile("Give Salary Details", "Provide your monthly salary amount abd salary date.", () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CurrentAdd(),
                   ));
             }),
             //getTile("Upload Selfie", "Upload Selfie"),
