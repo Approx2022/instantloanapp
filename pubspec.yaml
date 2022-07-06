@@ -43,8 +43,8 @@ dev_dependencies:
   path_provider: ^2.0.11
   image_crop: ^0.4.0
   intl: ^0.17.0
-  learning_face_detection: ^0.0.1
-  learning_input_image: ^0.0.6+2
+#  learning_face_detection: ^0.0.1
+#  learning_input_image: ^0.0.6+2
 
   sizer: ^2.0.15
   url_launcher: ^6.0.20

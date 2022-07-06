@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instantloanapp/pages/instantCash/InstatntPage.dart';
+import 'package:instantloanapp/pages/insurance/InsurancePage.dart';
 import 'package:sizer/sizer.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,9 +23,12 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Container(
-                alignment: Alignment.center,
-                child: Text("Insurance"),
+              child: InkWell(
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => InsurancePage(),)),
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text("Insurance"),
+                ),
               ),
             ),
             Expanded(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:instantloanapp/pages/instantCash/KYC/PanCardPage.dart';
 import 'package:instantloanapp/utils.dart';
 import 'package:sizer/sizer.dart';
@@ -36,8 +37,8 @@ class _KYCDataPageState extends State<KYCDataPage> {
     if (prefs.getString(Utils.PREF_KYC_PIN) != null) {
       pinController.text = prefs.getString(Utils.PREF_KYC_PIN)!;
     }
-    if (prefs.getBool(Utils.PREF_KYC_AADHAR_GENDER) != null) {
-      isMale = prefs.getBool(Utils.PREF_KYC_AADHAR_GENDER)!;
+    if (prefs.getBool(Utils.PREF_USER_GENDER) != null) {
+      isMale = prefs.getBool(Utils.PREF_USER_GENDER)!;
     }
     setState(() {
 
@@ -96,14 +97,12 @@ class _KYCDataPageState extends State<KYCDataPage> {
                       borderRadius: BorderRadius.circular(7)),
                   child: TextFormField(
                     decoration: InputDecoration(
-                        border: InputBorder.none,
-                        counter: Container(
-                          height: 0,
-                          width: 0,
-                        )),
+                        border: InputBorder.none,),
                     controller: aadharController,
                     maxLines: 1,
-                    maxLength: 12,
+                    inputFormatters:[
+                      LengthLimitingTextInputFormatter(12),
+                    ],
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       RegExp expression =
@@ -141,14 +140,12 @@ class _KYCDataPageState extends State<KYCDataPage> {
                       borderRadius: BorderRadius.circular(7)),
                   child: TextFormField(
                     decoration: InputDecoration(
-                        border: InputBorder.none,
-                        counter: Container(
-                          height: 0,
-                          width: 0,
-                        )),
+                        border: InputBorder.none,),
                     controller: pinController,
                     maxLines: 1,
-                    maxLength: 6,
+                    inputFormatters:[
+                      LengthLimitingTextInputFormatter(6),
+                    ],
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value == null || value == "") {
@@ -174,7 +171,7 @@ class _KYCDataPageState extends State<KYCDataPage> {
                       await prefs.setString(Utils.PREF_KYC_AADHAR_NAME, nameControler.text);
                       await prefs.setString(Utils.PREF_KYC_AADHAR_NO, aadharController.text);
                       await prefs.setString(Utils.PREF_KYC_PIN, pinController.text);
-                      await prefs.setBool(Utils.PREF_KYC_AADHAR_GENDER, isMale);
+                      await prefs.setBool(Utils.PREF_USER_GENDER, isMale);
 
                       Navigator.pushReplacement(
                           context,

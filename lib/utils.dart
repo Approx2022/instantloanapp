@@ -2,9 +2,7 @@ class Utils {
   static const String PREF_KYC_AADHAR_NAME = "name";
   static const String PREF_KYC_AADHAR_NO = "addhaarno";
   static const String PREF_KYC_PIN = "pincode";
-  static const String PREF_KYC_AADHAR_GENDER = "gender";
   static const String PREF_KYC_PANCARD_NUM = "pannumber";
-  static const String PREF_KYC_PANCARD_BDATE = "panbdate";
   static const String PREF_ADDR_HOMENO = "homeno";
   static const String PREF_ADDR_STREET = "street";
   static const String PREF_ADDR_STATE = "state";
@@ -15,4 +13,10 @@ class Utils {
   static const String PREF_BANK_ACCNO = "bankaccno";
   static const String PREF_BANK_IFSC = "backifsc";
   static const String PREF_AGREEACPT = "agreeandaccept";
+  //user
+  static const String PREF_USER_NAME = "user_name";
+  static const String PREF_USER_EMAIL = "user_email";
+  static const String PREF_USER_BDATE = "panbdate";
+  static const String PREF_USER_GENDER = "gender";
+  static const String PREF_USER_CHILD = "haveChild";
 }

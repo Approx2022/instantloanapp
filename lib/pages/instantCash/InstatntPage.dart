@@ -45,7 +45,7 @@ class _InstatntPageState extends State<InstatntPage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CurrentAdd(),
+                    builder: (context) => CurrentAdd(true),
                   ));
             }),
             getTile("Give Salary Details",

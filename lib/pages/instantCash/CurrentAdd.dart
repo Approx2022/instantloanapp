@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:instantloanapp/pages/insurance/NomineeDetailsPage.dart';
 import 'package:instantloanapp/utils.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CurrentAdd extends StatefulWidget {
+  bool back;
+
+  CurrentAdd(this.back);
+
   @override
   State<CurrentAdd> createState() => _CurrentAddState();
 }
@@ -66,7 +72,8 @@ class _CurrentAddState extends State<CurrentAdd> {
                 ),
                 Container(
                   width: 95.w,
-                  padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: .5.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 3.w, vertical: .5.h),
                   decoration: BoxDecoration(
                       color: Colors.grey.shade400,
                       borderRadius: BorderRadius.circular(7)),
@@ -96,7 +103,8 @@ class _CurrentAddState extends State<CurrentAdd> {
                 ),
                 Container(
                   width: 95.w,
-                  padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: .5.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 3.w, vertical: .5.h),
                   decoration: BoxDecoration(
                       color: Colors.grey.shade400,
                       borderRadius: BorderRadius.circular(7)),
@@ -121,7 +129,8 @@ class _CurrentAddState extends State<CurrentAdd> {
                 ),
                 Container(
                   width: 95.w,
-                  padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: .5.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 3.w, vertical: .5.h),
                   decoration: BoxDecoration(
                       color: Colors.grey.shade400,
                       borderRadius: BorderRadius.circular(7)),
@@ -146,7 +155,8 @@ class _CurrentAddState extends State<CurrentAdd> {
                 ),
                 Container(
                   width: 95.w,
-                  padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: .5.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 3.w, vertical: .5.h),
                   decoration: BoxDecoration(
                       color: Colors.grey.shade400,
                       borderRadius: BorderRadius.circular(7)),
@@ -171,7 +181,8 @@ class _CurrentAddState extends State<CurrentAdd> {
                 ),
                 Container(
                   width: 95.w,
-                  padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: .5.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 3.w, vertical: .5.h),
                   decoration: BoxDecoration(
                       color: Colors.grey.shade400,
                       borderRadius: BorderRadius.circular(7)),
@@ -179,7 +190,9 @@ class _CurrentAddState extends State<CurrentAdd> {
                     decoration: InputDecoration(border: InputBorder.none),
                     controller: pinController,
                     maxLines: 1,
-                    maxLength: 6,
+                    inputFormatters:[
+                      LengthLimitingTextInputFormatter(6),
+                    ],
                     keyboardType: TextInputType.number,
                     textAlignVertical: TextAlignVertical.bottom,
                     validator: (value) {
@@ -213,7 +226,15 @@ class _CurrentAddState extends State<CurrentAdd> {
                           Utils.PREF_ADDR_CITY, cityController.text);
                       await prefs.setString(
                           Utils.PREF_KYC_PIN, pinController.text);
-                      Navigator.pop(context);
+                      if (widget.back) {
+                        Navigator.pop(context);
+                      } else {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => NomineeDetailsPage(),
+                            ));
+                      }
                     }
                   },
                   child: Container(

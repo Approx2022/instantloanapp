@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning_face_detection/learning_face_detection.dart';
-import 'package:learning_input_image/learning_input_image.dart';
+// import 'package:learning_face_detection/learning_face_detection.dart';
+// import 'package:learning_input_image/learning_input_image.dart';
 
 class UploadSelfiePage extends StatefulWidget {
   const UploadSelfiePage({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class _UploadSelfiePageState extends State<UploadSelfiePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          child: InputCameraView(
+        /*  child: InputCameraView(
         title: 'hii',
         onImage: (InputImage inputImage) async {
           FaceDetector detector = FaceDetector();
@@ -24,7 +24,7 @@ class _UploadSelfiePageState extends State<UploadSelfiePage> {
               print("faceDetected");
             }
         },
-      )),
+      )*/),
     );
   }
 }

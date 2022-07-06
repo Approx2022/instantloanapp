@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:instantloanapp/utils.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
@@ -24,9 +25,9 @@ class _PanCardDataState extends State<PanCardData> {
 
   iniData() async {
     final prefs = await SharedPreferences.getInstance();
-    if (prefs.getString(Utils.PREF_KYC_PANCARD_BDATE) != null)
+    if (prefs.getString(Utils.PREF_USER_BDATE) != null)
       dateController.text =
-          prefs.getString(Utils.PREF_KYC_PANCARD_BDATE)!;
+          prefs.getString(Utils.PREF_USER_BDATE)!;
     if (prefs.getString(Utils.PREF_KYC_PANCARD_NUM) != null)
       numController.text = prefs.getString(Utils.PREF_KYC_PANCARD_NUM)!;
     setState(() {});
@@ -62,7 +63,9 @@ class _PanCardDataState extends State<PanCardData> {
                   decoration: InputDecoration(border: InputBorder.none),
                   controller: numController,
                   maxLines: 1,
-                  maxLength: 10,
+                  inputFormatters:[
+                    LengthLimitingTextInputFormatter(10),
+                  ],
                   textAlignVertical: TextAlignVertical.bottom,
                   validator: (value) {
                     RegExp expression = RegExp(r'^[A-Z]{5}[0-9]{4}[A-Z]{1}$');
@@ -108,7 +111,7 @@ class _PanCardDataState extends State<PanCardData> {
                     final prefs = await SharedPreferences.getInstance();
                     await prefs.setString(
                         Utils.PREF_KYC_PANCARD_NUM, numController.text);
-                    await prefs.setString(Utils.PREF_KYC_PANCARD_BDATE,
+                    await prefs.setString(Utils.PREF_USER_BDATE,
                         dateController.text);
                     Navigator.pop(context);
                   }
