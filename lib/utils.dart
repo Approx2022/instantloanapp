@@ -19,4 +19,9 @@ class Utils {
   static const String PREF_USER_BDATE = "panbdate";
   static const String PREF_USER_GENDER = "gender";
   static const String PREF_USER_CHILD = "haveChild";
+  //Nominee
+  static const String PREF_MOMINEE_NAME = "nomiee_name";
+  static const String PREF_MOMINEE_NUMBER = "nomiee_no";
+  static const String PREF_MOMINEE_BIRTH = "nomiee_birt";
+  static const String PREF_MOMINEE_RELATION = "nomiee_relation";
 }

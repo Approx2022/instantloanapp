@@ -1,10 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instantloanapp/pages/insurance/PersonalDetailsPage.dart';
+import 'package:instantloanapp/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
-class InsurancePage extends StatelessWidget {
+class InsurancePage extends StatefulWidget {
+  @override
+  State<InsurancePage> createState() => _InsurancePageState();
+}
+
+class _InsurancePageState extends State<InsurancePage> {
   double spaceHeight = 2.h;
+  bool isHaveInsurence = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.getString(Utils.PREF_MOMINEE_NAME) != null) {
+      isHaveInsurence = true;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,18 +138,57 @@ class InsurancePage extends StatelessWidget {
                 textScaleFactor: 1,
               ),
               getSizedBox(),
-              InkWell(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PersonalDetailsPage(),)),
-                child: Container(
-                  width: 100.w,
-                  height: 7.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      color: Theme.of(context).primaryColor),
-                  alignment: Alignment.center,
-                  child: Text("Get Insurance",textScaleFactor: 1.3,style: TextStyle(color: Colors.white),),
-                ),
-              ),
+              isHaveInsurence
+                  ? InkWell(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PersonalDetailsPage(),
+                          )),
+                      child: Container(
+                        width: 100.w,
+                        height: 7.h,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: Theme.of(context).primaryColor),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Get Insurance",
+                          textScaleFactor: 1.3,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    )
+                  : Container(
+                      height: 50,
+                      width: 100.w,
+                      decoration: BoxDecoration(
+                        color: Colors.green.shade200,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 35,
+                            width: 35,
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 7, vertical: 7),
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.done,
+                              color: Colors.green.shade200,
+                            ),
+                          ),
+                          Text(
+                            "You have this insurence.",
+                            textScaleFactor: 1.2,
+                          ),
+                        ],
+                      ),
+                    ),
               getSizedBox(),
               getDivider(),
               getSizedBox(),

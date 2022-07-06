@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:instantloanapp/pages/instantCash/InstatntPage.dart';
 import 'package:instantloanapp/utils.dart';
-import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 
 class PanCardData extends StatefulWidget {
   @override
@@ -26,8 +27,7 @@ class _PanCardDataState extends State<PanCardData> {
   iniData() async {
     final prefs = await SharedPreferences.getInstance();
     if (prefs.getString(Utils.PREF_USER_BDATE) != null)
-      dateController.text =
-          prefs.getString(Utils.PREF_USER_BDATE)!;
+      dateController.text = prefs.getString(Utils.PREF_USER_BDATE)!;
     if (prefs.getString(Utils.PREF_KYC_PANCARD_NUM) != null)
       numController.text = prefs.getString(Utils.PREF_KYC_PANCARD_NUM)!;
     setState(() {});
@@ -63,7 +63,7 @@ class _PanCardDataState extends State<PanCardData> {
                   decoration: InputDecoration(border: InputBorder.none),
                   controller: numController,
                   maxLines: 1,
-                  inputFormatters:[
+                  inputFormatters: [
                     LengthLimitingTextInputFormatter(10),
                   ],
                   textAlignVertical: TextAlignVertical.bottom,
@@ -111,9 +111,13 @@ class _PanCardDataState extends State<PanCardData> {
                     final prefs = await SharedPreferences.getInstance();
                     await prefs.setString(
                         Utils.PREF_KYC_PANCARD_NUM, numController.text);
-                    await prefs.setString(Utils.PREF_USER_BDATE,
-                        dateController.text);
-                    Navigator.pop(context);
+                    await prefs.setString(
+                        Utils.PREF_USER_BDATE, dateController.text);
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => InstatntPage(),
+                        ));
                   }
                 },
                 child: Container(
@@ -146,8 +150,7 @@ class _PanCardDataState extends State<PanCardData> {
         .then((pickedDate) {
       if (pickedDate != null) {
         date = pickedDate;
-        dateController.text =
-            DateFormat('dd-MM-yyyy').format(pickedDate);
+        dateController.text = DateFormat('dd-MM-yyyy').format(pickedDate);
       }
       setState(() {});
     });

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instantloanapp/pages/instantCash/InstatntPage.dart';
 import 'package:instantloanapp/pages/instantCash/UploadSalarySlip/SelectSalaryProof.dart';
 import 'package:instantloanapp/utils.dart';
 import 'package:intl/intl.dart';
@@ -86,10 +87,19 @@ class _SalaryDetailsPageState extends State<SalaryDetailsPage> {
                   final prefs = await SharedPreferences.getInstance();
                   prefs.setString(
                       Utils.PREF_SALARY_DATE, "${dateController.text}");
-                  if(widget.isBack) {
-                    Navigator.pop(context);
-                  } else{
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SelectSlalaryProof(),));
+                  prefs.setBool(Utils.PREF_SALARY_SKIP, true);
+                  if (widget.isBack) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => InstatntPage(),
+                        ));
+                  } else {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SelectSlalaryProof(),
+                        ));
                   }
                 },
                 child: Container(
@@ -115,10 +125,18 @@ class _SalaryDetailsPageState extends State<SalaryDetailsPage> {
                   final prefs = await SharedPreferences.getInstance();
                   prefs.setBool(Utils.PREF_SALARY_SKIP, true);
 
-                  if(widget.isBack) {
-                    Navigator.pop(context);
-                  } else{
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SelectSlalaryProof(),));
+                  if (widget.isBack) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => InstatntPage(),
+                        ));
+                  } else {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SelectSlalaryProof(),
+                        ));
                   }
                 },
                 child: Container(

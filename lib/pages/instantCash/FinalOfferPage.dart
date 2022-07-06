@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instantloanapp/pages/instantCash/InstatntPage.dart';
 import 'package:instantloanapp/utils.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -98,6 +99,11 @@ class _FinalOfferPageState extends State<FinalOfferPage> {
                 onTap: () async {
                   final prefs = await SharedPreferences.getInstance();
                   prefs.setBool(Utils.PREF_AGREEACPT, true);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => InstatntPage(),
+                      ));
                 },
                 child: Container(
                   width: 100.w,

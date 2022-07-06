@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instantloanapp/pages/instantCash/InstatntPage.dart';
 import 'package:instantloanapp/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
@@ -171,7 +172,11 @@ class _BankDetailsPageState extends State<BankDetailsPage> {
                           Utils.PREF_BANK_ACCNO, accnoController.text);
                       await prefs.setString(
                           Utils.PREF_BANK_IFSC, ifscController.text);
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => InstatntPage(),
+                          ));
                     }
                   },
                   child: Container(

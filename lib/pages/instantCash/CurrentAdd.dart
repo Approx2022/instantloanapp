@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:instantloanapp/pages/instantCash/InstatntPage.dart';
 import 'package:instantloanapp/pages/insurance/NomineeDetailsPage.dart';
 import 'package:instantloanapp/utils.dart';
-import 'package:sizer/sizer.dart';
-import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 
 class CurrentAdd extends StatefulWidget {
   bool back;
@@ -190,7 +190,7 @@ class _CurrentAddState extends State<CurrentAdd> {
                     decoration: InputDecoration(border: InputBorder.none),
                     controller: pinController,
                     maxLines: 1,
-                    inputFormatters:[
+                    inputFormatters: [
                       LengthLimitingTextInputFormatter(6),
                     ],
                     keyboardType: TextInputType.number,
@@ -227,7 +227,11 @@ class _CurrentAddState extends State<CurrentAdd> {
                       await prefs.setString(
                           Utils.PREF_KYC_PIN, pinController.text);
                       if (widget.back) {
-                        Navigator.pop(context);
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => InstatntPage(),
+                            ));
                       } else {
                         Navigator.pushReplacement(
                             context,

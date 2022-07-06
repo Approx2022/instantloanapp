@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:instantloanapp/pages/instantCash/CurrentAdd.dart';
 import 'package:instantloanapp/utils.dart';
-import 'package:sizer/sizer.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 
 class PersonalDetailsPage extends StatefulWidget {
   const PersonalDetailsPage({Key? key}) : super(key: key);
@@ -21,15 +21,14 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   bool isChield = true;
   var key = GlobalKey<FormState>();
 
-
   @override
   void initState() {
-        super.initState();
-        date = DateTime.now();
-        setData();
+    super.initState();
+    date = DateTime.now();
+    setData();
   }
 
-  setData() async{
+  setData() async {
     final prefs = await SharedPreferences.getInstance();
     if (prefs.getString(Utils.PREF_USER_NAME) != null) {
       nameControler.text = prefs.getString(Utils.PREF_USER_NAME)!;
@@ -40,10 +39,10 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
     if (prefs.getString(Utils.PREF_USER_BDATE) != null) {
       dateController.text = prefs.getString(Utils.PREF_USER_BDATE)!;
     }
-    if (prefs.getString(Utils.PREF_USER_GENDER) != null) {
+    if (prefs.getBool(Utils.PREF_USER_GENDER) != null) {
       isMale = prefs.getBool(Utils.PREF_USER_GENDER)!;
     }
-    if (prefs.getString(Utils.PREF_USER_CHILD) != null) {
+    if (prefs.getBool(Utils.PREF_USER_CHILD) != null) {
       isChield = prefs.getBool(Utils.PREF_USER_CHILD)!;
     }
     setState(() {});
@@ -155,12 +154,14 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
                     if (key.currentState!.validate()) {
                       final prefs = await SharedPreferences.getInstance();
                       prefs.setString(Utils.PREF_USER_NAME, nameControler.text);
-                      prefs.setString(Utils.PREF_USER_BDATE, dateController.text);
-                      prefs.setString(Utils.PREF_USER_EMAIL, emailControler.text);
+                      prefs.setString(
+                          Utils.PREF_USER_BDATE, dateController.text);
+                      prefs.setString(
+                          Utils.PREF_USER_EMAIL, emailControler.text);
                       prefs.setBool(Utils.PREF_USER_GENDER, isMale);
                       prefs.setBool(Utils.PREF_USER_CHILD, isChield);
 
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => CurrentAdd(false),

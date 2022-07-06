@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:instantloanapp/pages/instantCash/SalaryDetailsPage.dart';
+import 'package:instantloanapp/pages/instantCash/InstatntPage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -51,57 +51,43 @@ class _UploadSalaryProofPageState extends State<UploadSalaryProofPage> {
               },
               child: imageFile != null && imageFile!.existsSync()
                   ? Image.file(
-                imageFile!,
-                width: 95.w,
-                height: 30.h,
-                fit: BoxFit.cover,
-              )
+                      imageFile!,
+                      width: 95.w,
+                      height: 30.h,
+                      fit: BoxFit.cover,
+                    )
                   : Container(
-                width: 95.w,
-                height: 30.h,
-                color: Colors.grey.shade300,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.photo_camera,
-                      color: Colors.grey.shade700,
+                      width: 95.w,
+                      height: 30.h,
+                      color: Colors.grey.shade300,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.photo_camera,
+                            color: Colors.grey.shade700,
+                          ),
+                          Text(
+                            widget.s,
+                            style: TextStyle(color: Colors.grey.shade500),
+                          ),
+                        ],
+                      ),
                     ),
-                    Text(
-                      widget.s,
-                      style: TextStyle(color: Colors.grey.shade500),
-                    ),
-                  ],
-                ),
-              ),
             ),
             TextButton(
                 onPressed: () {
                   if (imageFile != null && imageFile!.existsSync()) {
                     Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => SalaryDetailsPage(false),
-                      ),
-                    );
-                  }else{
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => InstatntPage(),
+                        ));
+                  } else {
                     showDialogForImage();
                   }
                 },
                 child: Text("Upload Document")),
-           /* TextButton(
-              onPressed: () {
-                if (imageFile != null && imageFile!.existsSync()) {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => SalaryDetailsPage(false),
-                    ),
-                  );
-                }
-              },
-              child: Text("Skip"),
-            ),*/
           ],
         ),
       ),
@@ -118,7 +104,7 @@ class _UploadSalaryProofPageState extends State<UploadSalaryProofPage> {
           context,
           MaterialPageRoute(
               builder: (BuildContext context) =>
-                  ImageCroperPage(0, imageFile!, "/salaryslip.png")));
+                  ImageCroperPage(0, imageFile!, "/proof.png")));
       if (result != null && result is File) {
         imageFile = result as File;
       }
