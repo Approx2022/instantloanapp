@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instantloanapp/pages/KYC/PanCardPage.dart';
+import 'package:instantloanapp/pages/instantCash/KYC/PanCardPage.dart';
 import 'package:instantloanapp/utils.dart';
 import 'package:sizer/sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';

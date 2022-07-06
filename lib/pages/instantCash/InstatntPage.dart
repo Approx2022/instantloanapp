@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:instantloanapp/pages/BackDetailsPage.dart';
-import 'package:instantloanapp/pages/CurrentAdd.dart';
-import 'package:instantloanapp/pages/FinalOfferPage.dart';
-import 'package:instantloanapp/pages/KYC/AdharFrontPage.dart';
-import 'package:instantloanapp/pages/SalaryDetailsPage.dart';
-import 'package:instantloanapp/pages/UploadSalarySlipPage.dart';
-import 'package:instantloanapp/pages/UploadSelfiePage.dart';
+import 'package:instantloanapp/pages/instantCash/BackDetailsPage.dart';
+import 'package:instantloanapp/pages/instantCash/CurrentAdd.dart';
+import 'package:instantloanapp/pages/instantCash/FinalOfferPage.dart';
+import 'package:instantloanapp/pages/instantCash/KYC/AdharFrontPage.dart';
+import 'package:instantloanapp/pages/instantCash/SalaryDetailsPage.dart';
+import 'package:instantloanapp/pages/instantCash/UploadSalarySlip/UploadSalarySlipPage.dart';
+import 'package:instantloanapp/pages/instantCash/UploadSelfiePage.dart';
 import 'package:sizer/sizer.dart';
 
 class InstatntPage extends StatefulWidget {
@@ -53,7 +53,7 @@ class _InstatntPageState extends State<InstatntPage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SalaryDetailsPage(),
+                    builder: (context) => SalaryDetailsPage(true),
                   ));
             }),
             getTile("Give Bank Details", "Provide your bank information.", () {

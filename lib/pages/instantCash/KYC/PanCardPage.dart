@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:instantloanapp/pages/KYC/AdharBackPage.dart';
-import 'package:instantloanapp/pages/KYC/PanCardData.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -77,12 +75,9 @@ class _PanCardPageState extends State<PanCardPage> {
             TextButton(
                 onPressed: () {
                   if (imageFile != null && imageFile!.existsSync()) {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => PanCardData(),
-                      ),
-                    );
+                    Navigator.pop(context);
+                  }else{
+                    showDialogForPickImage();
                   }
                 },
                 child: Text("Upload Document")),

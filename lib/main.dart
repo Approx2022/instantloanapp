@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import 'pages/HomePage.dart';
+import 'pages/instantCash/HomePage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

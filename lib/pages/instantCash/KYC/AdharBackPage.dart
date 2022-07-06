@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:instantloanapp/pages/KYC/KYCDataPage.dart';
+import 'package:instantloanapp/pages/instantCash/KYC/KYCDataPage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -82,6 +82,8 @@ class _AdharBackPageState extends State<AdharBackPage> {
                         builder: (BuildContext context) => KYCDataPage(),
                       ),
                     );
+                  }else{
+                    showDialogForImage();
                   }
                 },
                 child: Text("Upload Document")),

@@ -2,20 +2,20 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:instantloanapp/pages/SalaryDetailsPage.dart';
+import 'package:instantloanapp/pages/instantCash/KYC/AdharBackPage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sizer/sizer.dart';
 
-import 'KYC/ImageCroperPage.dart';
+import 'ImageCroperPage.dart';
 
-class UploadSalarySlipPage extends StatefulWidget {
-  const UploadSalarySlipPage({Key? key}) : super(key: key);
+class AdharFrontPage extends StatefulWidget {
+  const AdharFrontPage({Key? key}) : super(key: key);
 
   @override
-  State<UploadSalarySlipPage> createState() => _UploadSalarySlipPageState();
+  State<AdharFrontPage> createState() => _AdharFrontPageState();
 }
 
-class _UploadSalarySlipPageState extends State<UploadSalarySlipPage> {
+class _AdharFrontPageState extends State<AdharFrontPage> {
   late File? imageFile = null;
   ImagePicker _picker = ImagePicker();
   Directory? documentDirectory;
@@ -28,7 +28,7 @@ class _UploadSalarySlipPageState extends State<UploadSalarySlipPage> {
   iniImage() async {
     documentDirectory = await getApplicationDocumentsDirectory();
     if (documentDirectory != null)
-      imageFile = File("${documentDirectory!.path}/salaryslip.png");
+      imageFile = File("${documentDirectory!.path}/adhaar1.png");
     setState(() {});
   }
 
@@ -66,7 +66,7 @@ class _UploadSalarySlipPageState extends State<UploadSalarySlipPage> {
                             color: Colors.grey.shade700,
                           ),
                           Text(
-                            "Click On Upload Salary slip",
+                            "Click On Upload Aadhaar Card Front",
                             style: TextStyle(color: Colors.grey.shade500),
                           ),
                         ],
@@ -79,25 +79,14 @@ class _UploadSalarySlipPageState extends State<UploadSalarySlipPage> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) => SalaryDetailsPage(),
+                        builder: (BuildContext context) => AdharBackPage(),
                       ),
                     );
+                  }else{
+                    showDialogForImage();
                   }
                 },
                 child: Text("Upload Document")),
-            TextButton(
-              onPressed: () {
-                if (imageFile != null && imageFile!.existsSync()) {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) => SalaryDetailsPage(),
-                    ),
-                  );
-                }
-              },
-              child: Text("Skip"),
-            ),
           ],
         ),
       ),
@@ -106,15 +95,15 @@ class _UploadSalarySlipPageState extends State<UploadSalarySlipPage> {
 
   pickCropedImage(bool fromCemera) async {
     Navigator.pop(context);
-    final XFile? image = await _picker.pickImage(
-        source: fromCemera ? ImageSource.camera : ImageSource.gallery);
+    final XFile? image =
+        await _picker.pickImage(source: fromCemera ? ImageSource.camera : ImageSource.gallery);
     if (image != null) {
       imageFile = File(image.path);
       var result = await Navigator.push(
           context,
           MaterialPageRoute(
               builder: (BuildContext context) =>
-                  ImageCroperPage(0, imageFile!, "/salaryslip.png")));
+                  ImageCroperPage(0, imageFile!,"/adhaar1.png")));
       if (result != null && result is File) {
         imageFile = result as File;
       }
@@ -122,7 +111,7 @@ class _UploadSalarySlipPageState extends State<UploadSalarySlipPage> {
     setState(() {});
   }
 
-  showDialogForImage() {
+  showDialogForImage(){
     showDialog(
         context: context,
         builder: (context) {
@@ -150,57 +139,44 @@ class _UploadSalarySlipPageState extends State<UploadSalarySlipPage> {
                               Column(
                                 children: [
                                   InkWell(
-                                    onTap: () => pickCropedImage(true),
+                                    onTap : ()=> pickCropedImage(true),
                                     child: Container(
                                       height: 70,
                                       width: 70,
                                       decoration: BoxDecoration(
                                         color: Colors.red,
-                                        borderRadius: BorderRadius.circular(7),
+                                        borderRadius:
+                                        BorderRadius.circular(7),
                                       ),
-                                      child: Icon(
-                                        Icons.photo_camera,
-                                        size: 36,
-                                        color: Colors.white,
-                                      ),
+                                      child: Icon(Icons.photo_camera,size: 36,color: Colors.white,),
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    "Camera",
-                                    style: TextStyle(fontSize: 12),
-                                  ),
+                                  SizedBox(height: 8,),
+                                  Text("Camera",style: TextStyle(fontSize: 12),),
                                 ],
                               ),
                               Column(
                                 children: [
                                   InkWell(
-                                    onTap: () => pickCropedImage(false),
+                                    onTap : ()=> pickCropedImage(false),
                                     child: Container(
                                       height: 70,
                                       width: 70,
                                       decoration: BoxDecoration(
                                         color: Colors.red,
-                                        borderRadius: BorderRadius.circular(7),
+                                        borderRadius:
+                                        BorderRadius.circular(7),
                                       ),
-                                      child: Icon(
-                                        Icons.photo_library_outlined,
-                                        size: 36,
-                                        color: Colors.white,
-                                      ),
+                                      child: Icon(Icons.photo_library_outlined,size: 36,color: Colors.white,),
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text("Gallery",
-                                      style: TextStyle(fontSize: 12))
+                                  SizedBox(height: 8,),
+                                  Text("Gallery",style: TextStyle(fontSize: 12))
                                 ],
                               ),
                             ],
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceEvenly,
                           ),
                         ),
                       ),

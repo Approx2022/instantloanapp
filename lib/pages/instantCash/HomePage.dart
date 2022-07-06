@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instantloanapp/pages/InstatntPage.dart';
+import 'package:instantloanapp/pages/instantCash/InstatntPage.dart';
 import 'package:sizer/sizer.dart';
 
 class HomePage extends StatelessWidget {

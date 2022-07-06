@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:instantloanapp/pages/instantCash/UploadSalarySlip/SelectSalaryProof.dart';
 import 'package:instantloanapp/utils.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 class SalaryDetailsPage extends StatefulWidget {
-  const SalaryDetailsPage({Key? key}) : super(key: key);
+  bool isBack;
+
+  SalaryDetailsPage(this.isBack);
 
   @override
   State<SalaryDetailsPage> createState() => _SalaryDetailsPageState();
@@ -83,7 +86,11 @@ class _SalaryDetailsPageState extends State<SalaryDetailsPage> {
                   final prefs = await SharedPreferences.getInstance();
                   prefs.setString(
                       Utils.PREF_SALARY_DATE, "${dateController.text}");
-                  Navigator.pop(context);
+                  if(widget.isBack) {
+                    Navigator.pop(context);
+                  } else{
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SelectSlalaryProof(),));
+                  }
                 },
                 child: Container(
                   width: 100.w,
@@ -107,7 +114,12 @@ class _SalaryDetailsPageState extends State<SalaryDetailsPage> {
                 onTap: () async {
                   final prefs = await SharedPreferences.getInstance();
                   prefs.setBool(Utils.PREF_SALARY_SKIP, true);
-                  Navigator.pop(context);
+
+                  if(widget.isBack) {
+                    Navigator.pop(context);
+                  } else{
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SelectSlalaryProof(),));
+                  }
                 },
                 child: Container(
                   width: 100.w,
