@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:instantloanapp/pages/instantCash/BankDetailsPage.dart';
-import 'package:instantloanapp/pages/instantCash/CheckEligibility.dart';
 import 'package:instantloanapp/pages/instantCash/CurrentAdd.dart';
 import 'package:instantloanapp/pages/instantCash/FinalOfferPage.dart';
 import 'package:instantloanapp/pages/instantCash/KYC/AdharFrontPage.dart';
 import 'package:instantloanapp/pages/instantCash/SalaryDetailsPage.dart';
 import 'package:instantloanapp/pages/instantCash/UploadSalarySlip/UploadSalarySlipPage.dart';
 import 'package:instantloanapp/pages/instantCash/UploadSelfiePage.dart';
+import 'package:instantloanapp/pages/instantCash/eligiable/CheckEligibility.dart';
 import 'package:instantloanapp/utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,7 +24,7 @@ class InstatntPage extends StatefulWidget {
 class _InstatntPageState extends State<InstatntPage> {
   bool salfie = false,
       KYC = false,
-      selfi = false,
+      selfi = true,
       address = false,
       salary = false,
       bank = false,
@@ -139,12 +139,14 @@ class _InstatntPageState extends State<InstatntPage> {
               }),
               InkWell(
                 onTap: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CheckEligibility(),
-                      ));
-                  getData();
+                  if (getelig()) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CheckEligibility(),
+                        ));
+                    getData();
+                  }
                 },
                 child: Container(
                   height: 50,
@@ -152,6 +154,8 @@ class _InstatntPageState extends State<InstatntPage> {
                   decoration: BoxDecoration(
                       color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(5)),
+                  foregroundDecoration: BoxDecoration(
+                      color: getelig() ? Colors.transparent : Colors.white38),
                   alignment: Alignment.center,
                   child: Text("Check Eligibility",
                       style: TextStyle(color: Colors.white),
@@ -167,6 +171,10 @@ class _InstatntPageState extends State<InstatntPage> {
         ),
       ),
     );
+  }
+
+  bool getelig() {
+    return selfi && afinal && slalryslip && bank && salary && address && KYC;
   }
 
   Widget getTile(

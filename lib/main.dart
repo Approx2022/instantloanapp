@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return Sizer(builder:
         (BuildContext context, Orientation orientation, DeviceType deviceType) {
       return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Instant Loan app',
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           primarySwatch: Colors.blue,
